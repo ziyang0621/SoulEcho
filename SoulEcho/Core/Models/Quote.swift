@@ -1,11 +1,11 @@
 import Foundation
 
 struct Quote: Codable, Equatable {
-    let content: String
-    let author: String
-    
-    enum CodingKeys: String, CodingKey {
-        case content = "q"
-        case author = "a"
-    }
+    var content: String
+    var author: String
+}
+
+struct QuoteBank: Codable {
+    let version: Int
+    let quotes: [Quote]
 }

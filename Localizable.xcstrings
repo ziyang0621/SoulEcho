@@ -1,0 +1,50 @@
+{
+  "sourceLanguage" : "zh-Hans",
+  "strings" : {
+    "无法获取今日引言" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unable to load today's quote"
+          }
+        }
+      }
+    },
+    "无论你在此刻感到何种情绪，允许它的存在，并安静地与之共处。" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Whatever emotion you feel right now, allow its existence, and sit with it quietly."
+          }
+        }
+      }
+    },
+    "天气晴好，非常适合在户外进行几分钟的静态冥想与深呼吸。" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The weather is lovely, perfect for a few minutes of quiet reflection and deep breathing outdoors."
+          }
+        }
+      }
+    },
+    "现在的天气更适合在舒适的室内进行短暂的沉思与放松。" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The weather is better suited for a brief moment of indoor reflection and relaxation."
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.0"
+}
