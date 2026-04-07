@@ -5,7 +5,4 @@ struct Quote: Codable, Equatable {
     var author: String
 }
 
-struct QuoteBank: Codable {
-    let version: Int
-    let quotes: [Quote]
-}
+

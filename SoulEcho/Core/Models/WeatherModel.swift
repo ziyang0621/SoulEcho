@@ -22,10 +22,10 @@ struct WeatherRecommendation {
         let goodWeatherCodes = [0, 1, 2, 3]
         if goodWeatherCodes.contains(weatherCode) && temperature > 10 && temperature < 35 {
             isSuitableForOutdoor = true
-            message = "天气晴好，非常适合在户外进行几分钟的静态冥想与深呼吸。"
+            message = String(localized: "天气晴好，非常适合在户外进行几分钟的静态冥想与深呼吸。")
         } else {
             isSuitableForOutdoor = false
-            message = "现在的天气更适合在舒适的室内进行短暂的沉思与放松。"
+            message = String(localized: "现在的天气更适合在舒适的室内进行短暂的沉思与放松。")
         }
     }
 }

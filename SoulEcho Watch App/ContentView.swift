@@ -8,8 +8,9 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State private var quote = WatchStorage.shared.loadQuote()
-    @State private var author = WatchStorage.shared.loadAuthor()
+    @State private var quote = ""
+    @State private var author = ""
+    @State private var isLoading = true
     
     var body: some View {
         NavigationStack {
@@ -19,14 +20,19 @@ struct ContentView: View {
                         .font(.caption2)
                         .foregroundStyle(.secondary)
                     
-                    Text("“\(quote)”")
-                        .font(.system(.body, design: .serif))
-                        .multilineTextAlignment(.center)
-                        .padding(.horizontal, 4)
-                        
-                    Text("- \(author) -")
-                        .font(.footnote)
-                        .foregroundStyle(.secondary)
+                    if isLoading {
+                        ProgressView()
+                            .padding()
+                    } else {
+                        Text("\"\(quote)\"")
+                            .font(.system(.body, design: .serif))
+                            .multilineTextAlignment(.center)
+                            .padding(.horizontal, 4)
+                            
+                        Text("- \(author) -")
+                            .font(.footnote)
+                            .foregroundStyle(.secondary)
+                    }
                     
                     NavigationLink(destination: ReflectView()) {
                         HStack {
@@ -39,10 +45,11 @@ struct ContentView: View {
                 }
             }
         }
-        .onAppear {
-            // Reload into memory if updated from iOS App Group
-            quote = WatchStorage.shared.loadQuote()
-            author = WatchStorage.shared.loadAuthor()
+        .task {
+            let result = await WatchStorage.shared.fetchFreshQuote()
+            quote = result.content
+            author = result.author
+            isLoading = false
         }
     }
 }
