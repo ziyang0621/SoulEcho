@@ -1,108 +1,125 @@
 {
-  "version": 1,
+  "version": 2,
   "quotes": [
-    {"content": "你不需要刻意去追寻平静，只需停止搅动这潭水。", "author": "阿姜查"},
-    {"content": "允许一切如其所是，是卸下心灵重担的开始。", "author": "埃克哈特·托利"},
-    {"content": "你的每一次呼吸，都是生命向你发出的最温柔的邀请。", "author": "一行禅师"},
-    {"content": "不要抗拒你的情绪，看着它，像看着天上的云在风中飘过。", "author": "克里希那穆提"},
-    {"content": "向内看，并不是逃避世界，而是为了以更清晰的目光去拥抱它。", "author": "卡尔·荣格"},
-    {"content": "你此刻站立的地方，就是通往平静的唯一起点。", "author": "乔·卡巴金"},
-    {"content": "万物皆有裂痕，那是光照进来的地方。", "author": "莱昂纳德·科恩"},
-    {"content": "当你不加评判地觉察时，痛苦就失去了掌控你的力量。", "author": "SoulEcho"},
-    {"content": "放下的意思不是一无所有，而是没有任何东西能占据你。", "author": "阿姜查"},
-    {"content": "无论你在此刻感到何种情绪，允许它的存在，并安静地与之共处。", "author": "SoulEcho"},
-    {"content": "最深的宁静不在于无声，而在于内心不再挣扎。", "author": "埃克哈特·托利"},
-    {"content": "你不是你的念头，你是觉察到念头的那个存在。", "author": "埃克哈特·托利"},
-    {"content": "当你真正活在当下，焦虑就会像晨雾一样自然散去。", "author": "一行禅师"},
-    {"content": "每一步行走，都是一次与大地的温柔对话。", "author": "一行禅师"},
-    {"content": "吸气，我知道我在吸气。呼气，我微笑。", "author": "一行禅师"},
-    {"content": "痛苦是不可避免的，但受苦是可以选择的。", "author": "村上春树"},
-    {"content": "真正的自由，是不再需要别人的认可来确认自己的价值。", "author": "克里希那穆提"},
-    {"content": "智慧的开端，是对内在沉默的倾听。", "author": "克里希那穆提"},
-    {"content": "与其追逐光明，不如成为光明本身。", "author": "鲁米"},
-    {"content": "伤口是光进入你内心的地方。", "author": "鲁米"},
-    {"content": "你不是大海中的一滴水，你是一滴水中的整个大海。", "author": "鲁米"},
-    {"content": "不要因为走得太远，而忘记了为什么出发。", "author": "纪伯伦"},
-    {"content": "你的孩子不是你的孩子，他们是生命对自身渴望而诞生的。", "author": "纪伯伦"},
-    {"content": "悲伤在你心里刻得越深，你能容纳的欢乐就越多。", "author": "纪伯伦"},
-    {"content": "知人者智，自知者明。", "author": "老子"},
-    {"content": "上善若水，水善利万物而不争。", "author": "老子"},
-    {"content": "千里之行，始于足下。", "author": "老子"},
-    {"content": "大音希声，大象无形。", "author": "老子"},
-    {"content": "天地与我并生，而万物与我为一。", "author": "庄子"},
-    {"content": "相濡以沫，不如相忘于江湖。", "author": "庄子"},
-    {"content": "至人无己，神人无功，圣人无名。", "author": "庄子"},
-    {"content": "你所拥有的一切，终将失去。唯有此刻的觉知，永远属于你。", "author": "佛陀"},
-    {"content": "恨不能止恨，唯有爱能止恨，这是永恒的法则。", "author": "佛陀"},
-    {"content": "一切有为法，如梦幻泡影，如露亦如电。", "author": "《金刚经》"},
-    {"content": "菩提本无树，明镜亦非台。本来无一物，何处惹尘埃。", "author": "六祖慧能"},
-    {"content": "春有百花秋有月，夏有凉风冬有雪。若无闲事挂心头，便是人间好时节。", "author": "无门慧开"},
-    {"content": "应无所住而生其心。", "author": "《金刚经》"},
-    {"content": "在人生最黑暗的时刻，才能看到星星。", "author": "维克多·弗兰克尔"},
-    {"content": "人可以被夺去一切，唯独选择面对境遇态度的自由不可被剥夺。", "author": "维克多·弗兰克尔"},
-    {"content": "生命的意义不在于等待风暴过去，而在于学会在雨中翩翩起舞。", "author": "维维安·格林"},
-    {"content": "你无法在制造问题的同一个思维层面上解决这个问题。", "author": "爱因斯坦"},
-    {"content": "世界上最勇敢的事情，是带着一颗受伤的心继续去爱。", "author": "SoulEcho"},
-    {"content": "温柔不是软弱，而是你已足够强大，不再需要用力证明。", "author": "SoulEcho"},
-    {"content": "你的脆弱，恰恰是你最有力量的部分。", "author": "布琳·布朗"},
-    {"content": "不完美才是真实的，真实的才是美的。", "author": "布琳·布朗"},
-    {"content": "在所有的天气里，学会做自己的晴天。", "author": "SoulEcho"},
-    {"content": "呼吸不需要理由，你的存在本身就是一件美好的事。", "author": "SoulEcho"},
-    {"content": "慢下来，不是为了停止，而是为了感受脚下的路。", "author": "SoulEcho"},
-    {"content": "每一个黎明，都是宇宙写给你的一封情书。", "author": "SoulEcho"},
-    {"content": "你已经足够好了。不需要更快，不需要更多，此刻就好。", "author": "SoulEcho"},
-    {"content": "身体是灵魂的花园，呼吸是浇灌它的甘泉。", "author": "SoulEcho"},
-    {"content": "当你觉得世界太吵的时候，试着去听听自己心跳的声音。", "author": "SoulEcho"},
-    {"content": "不是所有流浪都是迷失，有时候是灵魂在寻找回家的路。", "author": "SoulEcho"},
-    {"content": "善待自己，就像你会善待一个你深爱的陌生人。", "author": "SoulEcho"},
-    {"content": "今天不需要答案，只要带着问题安静地坐一会儿就好。", "author": "SoulEcho"},
-    {"content": "星星不会因为无人仰望就停止闪烁，你的光芒也是。", "author": "SoulEcho"},
-    {"content": "你的心是一片海洋，不要只看到表面的波浪。", "author": "SoulEcho"},
-    {"content": "最好的疗愈，往往发生在你允许自己什么都不做的时候。", "author": "SoulEcho"},
-    {"content": "在呼与吸之间，藏着整个宇宙的秘密。", "author": "SoulEcho"},
-    {"content": "接受你的阴影，它会成为你最忠实的老师。", "author": "卡尔·荣格"},
-    {"content": "直到你让无意识变成有意识，它将一直主导你的生活，而你称之为命运。", "author": "卡尔·荣格"},
-    {"content": "凝视深渊的人，深渊也在凝视你。但深渊之下，是不可摧毁的光。", "author": "SoulEcho"},
-    {"content": "每一次的崩溃，都是为了让你重建一个更辽阔的自己。", "author": "SoulEcho"},
-    {"content": "静坐十分钟，你就为自己的灵魂开了一场盛宴。", "author": "SoulEcho"},
-    {"content": "对生活说谢谢，不是因为一切都好，而是因为你学会了在不好中找到好。", "author": "SoulEcho"},
-    {"content": "有些路只能一个人走，但你从来不是一个人。", "author": "SoulEcho"},
-    {"content": "树不会急着长高，花不会催自己开放。你也不需要。", "author": "SoulEcho"},
-    {"content": "如果你能感受到风，说明你还活着。这就够了。", "author": "SoulEcho"},
-    {"content": "真正的冥想不是清空念头，而是不再被念头牵着走。", "author": "乔·卡巴金"},
-    {"content": "正念意味着以一种特定的方式注意：有目的地、在当下、不加评判。", "author": "乔·卡巴金"},
-    {"content": "你无法阻止波浪，但你可以学会冲浪。", "author": "乔·卡巴金"},
-    {"content": "冥想不是一种追求，而是一种放下。", "author": "阿姜查"},
-    {"content": "试着坐下来不做任何事，感受存在本身的重量。那就是和平。", "author": "阿姜查"},
-    {"content": "不要试图成为什么，只是去观察正在发生的一切。", "author": "阿姜查"},
-    {"content": "一朵花不会想着和旁边的花竞争，它只是盛开。", "author": "禅语"},
-    {"content": "坐看云起时。", "author": "王维"},
-    {"content": "行到水穷处，坐看云起时。", "author": "王维"},
-    {"content": "独坐幽篁里，弹琴复长啸。深林人不知，明月来相照。", "author": "王维"},
-    {"content": "采菊东篱下，悠然见南山。", "author": "陶渊明"},
-    {"content": "结庐在人境，而无车马喧。问君何能尔？心远地自偏。", "author": "陶渊明"},
-    {"content": "宠辱不惊，看庭前花开花落；去留无意，望天上云卷云舒。", "author": "洪应明"},
-    {"content": "水流任急境常静，花落虽频意自闲。", "author": "《菜根谭》"},
-    {"content": "风来疏竹，风过而竹不留声；雁度寒潭，雁去而潭不留影。", "author": "《菜根谭》"},
-    {"content": "人生如逆旅，我亦是行人。", "author": "苏轼"},
-    {"content": "竹杖芒鞋轻胜马，谁怕？一蓑烟雨任平生。", "author": "苏轼"},
-    {"content": "回首向来萧瑟处，归去，也无风雨也无晴。", "author": "苏轼"},
-    {"content": "不是因为看到了希望才坚持，而是因为坚持了才看到希望。", "author": "SoulEcho"},
-    {"content": "让心柔软下来，雨水才能渗透进去，开出花来。", "author": "SoulEcho"},
-    {"content": "山不过来，我就过去。", "author": "禅语"},
-    {"content": "手把青秧插满田，低头便见水中天。心地清净方为道，退步原来是向前。", "author": "布袋和尚"},
-    {"content": "心如明镜台，时时勤拂拭。", "author": "神秀"},
-    {"content": "吃茶去。", "author": "赵州禅师"},
-    {"content": "日日是好日。", "author": "云门禅师"},
-    {"content": "活着本身就是一种修行，不必刻意追求什么境界。", "author": "SoulEcho"},
-    {"content": "每一秒的专注呼吸，都在为内心积攒一份宁静的力量。", "author": "SoulEcho"},
-    {"content": "焦虑来自对未来的恐惧，后悔来自对过去的执念。此刻，两者皆不存在。", "author": "SoulEcho"},
-    {"content": "你不需要修好所有的裂缝，有些破碎本身就是独一无二的纹路。", "author": "SoulEcho"},
-    {"content": "学会和自己的不完美和平共处，这就是最大的勇气。", "author": "SoulEcho"},
-    {"content": "雨会停，天会晴。在那之前，听听雨声也很美。", "author": "SoulEcho"},
-    {"content": "当你感到疲惫时，那是灵魂在提醒你：该回到自己身边了。", "author": "SoulEcho"},
-    {"content": "比起抵达终点，沿途遇见的每一缕微风更值得珍惜。", "author": "SoulEcho"},
-    {"content": "平静不是没有风暴，而是在风暴中心找到了安稳的锚点。", "author": "SoulEcho"},
-    {"content": "你的内心深处有一片大海，永远波澜不惊。去那里吧。", "author": "SoulEcho"}
+    {
+      "content_zh": "你不需要刻意去追寻平静，只需停止搅动这潭水。",
+      "author_zh": "阿姜查",
+      "content_en": "You don't need to try to be peaceful. Just stop trying to control the water.",
+      "author_en": "Ajahn Chah"
+    },
+    {
+      "content_zh": "允许一切如其所是，是卸下心灵重担的开始。",
+      "author_zh": "埃克哈特·托利",
+      "content_en": "Allowing everything to be as it is, is the beginning of dropping the burden of the mind.",
+      "author_en": "Eckhart Tolle"
+    },
+    {
+      "content_zh": "你的每一次呼吸，都是生命向你发出的最温柔的邀请。",
+      "author_zh": "一行禅师",
+      "content_en": "Every breath you take is a gentle invitation from life itself.",
+      "author_en": "Thich Nhat Hanh"
+    },
+    {
+      "content_zh": "不管此刻你有什么情绪，让它存在，静静地和它待一会儿。",
+      "author_zh": "SoulEcho",
+      "content_en": "Whatever emotion you feel right now, allow it to exist. Sit quietly with it for a moment.",
+      "author_en": "SoulEcho"
+    },
+    {
+      "content_zh": "不要抗拒你的情绪，看着它，像看着天上的云在风中飘过。",
+      "author_zh": "克里希那穆提",
+      "content_en": "Do not resist your emotions. Watch them pass like clouds in the wind.",
+      "author_en": "J. Krishnamurti"
+    },
+    {
+      "content_zh": "万物皆有裂痕，那是光照进来的地方。",
+      "author_zh": "莱昂纳德·科恩",
+      "content_en": "There is a crack in everything. That's how the light gets in.",
+      "author_en": "Leonard Cohen"
+    },
+    {
+      "content_zh": "向内看，并不是逃避世界，而是为了以更清晰的目光去拥抱它。",
+      "author_zh": "卡尔·荣格",
+      "content_en": "Looking inward is not escaping the world, but preparing to embrace it more clearly.",
+      "author_en": "Carl Jung"
+    },
+    {
+      "content_zh": "不是因为看到了希望才坚持，而是因为坚持了才看到希望。",
+      "author_zh": "SoulEcho",
+      "content_en": "Hope is not what makes you persevere; rather, perseverance is what reveals the hope.",
+      "author_en": "SoulEcho"
+    },
+    {
+      "content_zh": "放下的意思不是一无所有，而是没有任何东西能占据你。",
+      "author_zh": "阿里",
+      "content_en": "Letting go doesn't mean having nothing; it means nothing has you.",
+      "author_en": "Ali"
+    },
+    {
+      "content_zh": "你此刻站立的地方，就是通往平静的唯一起点。",
+      "author_zh": "乔·卡巴金",
+      "content_en": "The place you are standing right now is the only starting point to peace.",
+      "author_en": "Jon Kabat-Zinn"
+    },
+    {
+      "content_zh": "当你不加评判地觉察时，痛苦就失去了掌控你的力量。",
+      "author_zh": "SoulEcho",
+      "content_en": "When you observe without judgment, pain loses its power to control you.",
+      "author_en": "SoulEcho"
+    },
+    {
+      "content_zh": "最深的宁静不在于无声，而在于内心不再挣扎。",
+      "author_zh": "埃克哈特·托利",
+      "content_en": "The deepest peace is not the absence of sound, but the absence of internal struggle.",
+      "author_en": "Eckhart Tolle"
+    },
+    {
+      "content_zh": "当你真正活在当下，焦虑就会像晨雾一样自然散去。",
+      "author_zh": "一行禅师",
+      "content_en": "When you truly live in the present moment, anxiety dissipates like morning mist.",
+      "author_en": "Thich Nhat Hanh"
+    },
+    {
+      "content_zh": "有些路只能一个人走，但你从来不是一个人。",
+      "author_zh": "SoulEcho",
+      "content_en": "Some paths must be walked alone, but you are never truly alone.",
+      "author_en": "SoulEcho"
+    },
+    {
+      "content_zh": "吸气，我知道我在吸气。呼气，我微笑。",
+      "author_zh": "一行禅师",
+      "content_en": "Breathing in, I know I am breathing in. Breathing out, I smile.",
+      "author_en": "Thich Nhat Hanh"
+    },
+    {
+      "content_zh": "智慧的开端，是对内在沉默的倾听。",
+      "author_zh": "克里希那穆提",
+      "content_en": "The beginning of wisdom is listening to the silence within.",
+      "author_en": "J. Krishnamurti"
+    },
+    {
+      "content_zh": "树不会急着长高，花不会催自己开放。你也不需要。",
+      "author_zh": "SoulEcho",
+      "content_en": "Trees don't rush to grow and flowers don't force themselves to bloom. Neither do you.",
+      "author_en": "SoulEcho"
+    },
+    {
+      "content_zh": "不要因为走得太远，而忘记了为什么出发。",
+      "author_zh": "纪伯伦",
+      "content_en": "Do not forget why you started, just because you have traveled too far.",
+      "author_en": "Kahlil Gibran"
+    },
+    {
+      "content_zh": "水流任急境常静，花落虽频意自闲。",
+      "author_zh": "《菜根谭》",
+      "content_en": "Though the stream rushes, the surroundings remain still; though flowers fall often, the mind stays at ease.",
+      "author_en": "Caigentan"
+    },
+    {
+      "content_zh": "行到水穷处，坐看云起时。",
+      "author_zh": "王维",
+      "content_en": "Walk to where the water ends, and sit to watch the clouds rise.",
+      "author_en": "Wang Wei"
+    }
   ]
 }
