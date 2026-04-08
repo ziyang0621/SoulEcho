@@ -1,5 +1,5 @@
 {
-  "version": 4,
+  "version": 5,
   "quotes": [
     {
       "category": "calming",
@@ -79,6 +79,34 @@
       "author_en": "SoulEcho"
     },
     {
+      "category": "calming",
+      "content_zh": "一切都会以它该有的方式解决，只需信任这一刻。",
+      "author_zh": "SoulEcho",
+      "content_en": "Things will work out how they need to. Just trust this moment.",
+      "author_en": "SoulEcho"
+    },
+    {
+      "category": "calming",
+      "content_zh": "我信任生命的节奏，允许一切自然流动。",
+      "author_zh": "SoulEcho",
+      "content_en": "I trust the process of life and allow everything to flow naturally.",
+      "author_en": "SoulEcho"
+    },
+    {
+      "category": "calming",
+      "content_zh": "我的感受是真实的，我接纳并尊重它们。",
+      "author_zh": "SoulEcho",
+      "content_en": "My feelings are valid, and I honor them.",
+      "author_en": "SoulEcho"
+    },
+    {
+      "category": "calming",
+      "content_zh": "我吸引平静与正能量，内心如湖水般宁静。",
+      "author_zh": "SoulEcho",
+      "content_en": "I attract peace and positivity. My inner world is as calm as a lake.",
+      "author_en": "SoulEcho"
+    },
+    {
       "category": "motivating",
       "content_zh": "万物皆有裂痕，那是光照进来的地方。",
       "author_zh": "莱昂纳德·科恩",
@@ -149,6 +177,27 @@
       "author_en": "Martin Luther King Jr."
     },
     {
+      "category": "motivating",
+      "content_zh": "我有力量创造我想要的生活。",
+      "author_zh": "SoulEcho",
+      "content_en": "I have the power to create the life I want.",
+      "author_en": "SoulEcho"
+    },
+    {
+      "category": "motivating",
+      "content_zh": "我是坚韧、强大且勇敢的。",
+      "author_zh": "SoulEcho",
+      "content_en": "I am resilient, strong, and brave.",
+      "author_en": "SoulEcho"
+    },
+    {
+      "category": "motivating",
+      "content_zh": "每一天都是一个新的开始。",
+      "author_zh": "SoulEcho",
+      "content_en": "Every day is a fresh start.",
+      "author_en": "SoulEcho"
+    },
+    {
       "category": "general",
       "content_zh": "向内看，并不是逃避世界，而是为了以更清晰的目光去拥抱它。",
       "author_zh": "卡尔·荣格",
@@ -217,6 +266,27 @@
       "author_zh": "薇薇安·格林",
       "content_en": "Life isn't about waiting for the storm to pass; it's about learning to dance in the rain.",
       "author_en": "Vivian Greene"
+    },
+    {
+      "category": "general",
+      "content_zh": "我值得被爱，值得被尊重。",
+      "author_zh": "SoulEcho",
+      "content_en": "I deserve love and respect.",
+      "author_en": "SoulEcho"
+    },
+    {
+      "category": "general",
+      "content_zh": "我现在的样子就已经足够好了。",
+      "author_zh": "SoulEcho",
+      "content_en": "I am enough exactly as I am.",
+      "author_en": "SoulEcho"
+    },
+    {
+      "category": "general",
+      "content_zh": "我配得上所有来到我身边的美好事物。",
+      "author_zh": "SoulEcho",
+      "content_en": "I am worthy of all the good things that come my way.",
+      "author_en": "SoulEcho"
     }
   ]
 }
