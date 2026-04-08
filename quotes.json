@@ -1,5 +1,5 @@
 {
-  "version": 3,
+  "version": 4,
   "quotes": [
     {
       "category": "calming",
@@ -44,6 +44,41 @@
       "author_en": "SoulEcho"
     },
     {
+      "category": "calming",
+      "content_zh": "只有当你不再试图改变自己，真正的改变才会发生。",
+      "author_zh": "卡尔·罗杰斯",
+      "content_en": "The curious paradox is that when I accept myself just as I am, then I can change.",
+      "author_en": "Carl Rogers"
+    },
+    {
+      "category": "calming",
+      "content_zh": "焦虑是因为你试图活在未来，平静是因为你回到了当下。",
+      "author_zh": "SoulEcho",
+      "content_en": "Anxiety happens when you try to live in the future. Peace happens when you return to the now.",
+      "author_en": "SoulEcho"
+    },
+    {
+      "category": "calming",
+      "content_zh": "每一口呼吸都是一次机会，让紧绷的灵魂重获轻盈。",
+      "author_zh": "SoulEcho",
+      "content_en": "Every breath is an opportunity to let a tense soul become light again.",
+      "author_en": "SoulEcho"
+    },
+    {
+      "category": "calming",
+      "content_zh": "外界的喧嚣无法定义你，只有你的内心可以。",
+      "author_zh": "SoulEcho",
+      "content_en": "The outside noise doesn't define you; only your inner silence does.",
+      "author_en": "SoulEcho"
+    },
+    {
+      "category": "calming",
+      "content_zh": "休息并不是虚度光阴，而是为了倾听灵魂的回响。",
+      "author_zh": "SoulEcho",
+      "content_en": "Rest is not wasting time; it is listening to the echoes of your soul.",
+      "author_en": "SoulEcho"
+    },
+    {
       "category": "motivating",
       "content_zh": "万物皆有裂痕，那是光照进来的地方。",
       "author_zh": "莱昂纳德·科恩",
@@ -77,6 +112,41 @@
       "author_zh": "SoulEcho",
       "content_en": "Every moment in life is a point where you can start anew.",
       "author_en": "SoulEcho"
+    },
+    {
+      "category": "motivating",
+      "content_zh": "如果你感到疲倦，学会休息，而不是放弃。",
+      "author_zh": "班克斯",
+      "content_en": "If you get tired, learn to rest, not to quit.",
+      "author_en": "Banksy"
+    },
+    {
+      "category": "motivating",
+      "content_zh": "只要一步，你就已经不再是原来的自己。",
+      "author_zh": "SoulEcho",
+      "content_en": "With just one step, you are no longer who you were before.",
+      "author_en": "SoulEcho"
+    },
+    {
+      "category": "motivating",
+      "content_zh": "即使是在最暗的夜里，星光也从未消失。",
+      "author_zh": "SoulEcho",
+      "content_en": "Even in the darkest night, the starlight never truly disappears.",
+      "author_en": "SoulEcho"
+    },
+    {
+      "category": "motivating",
+      "content_zh": "你的潜能就像大海，每一次波折都是为了展现它的广阔。",
+      "author_zh": "SoulEcho",
+      "content_en": "Your potential is like the sea; every wave is there to show its vastness.",
+      "author_en": "SoulEcho"
+    },
+    {
+      "category": "motivating",
+      "content_zh": "不需要看到整个楼梯，只要迈出第一步就好。",
+      "author_zh": "马丁·路德·金",
+      "content_en": "You don't have to see the whole staircase, just take the first step.",
+      "author_en": "Martin Luther King Jr."
     },
     {
       "category": "general",
@@ -126,6 +196,27 @@
       "author_zh": "王维",
       "content_en": "Walk to where the water ends, and sit to watch the clouds rise.",
       "author_en": "Wang Wei"
+    },
+    {
+      "category": "general",
+      "content_zh": "真正的旅行不在于寻找新的风景，而在于拥有新的眼光。",
+      "author_zh": "马塞尔·普鲁斯特",
+      "content_en": "The real voyage of discovery consists not in seeking new landscapes, but in having new eyes.",
+      "author_en": "Marcel Proust"
+    },
+    {
+      "category": "general",
+      "content_zh": "在喧嚣的深处，藏着一个永恒寂静的你。",
+      "author_zh": "SoulEcho",
+      "content_en": "Deep within the noise, there hides an eternally silent version of you.",
+      "author_en": "SoulEcho"
+    },
+    {
+      "category": "general",
+      "content_zh": "生命不是为了等待暴风雨过去，而是在雨中起舞。",
+      "author_zh": "薇薇安·格林",
+      "content_en": "Life isn't about waiting for the storm to pass; it's about learning to dance in the rain.",
+      "author_en": "Vivian Greene"
     }
   ]
 }
