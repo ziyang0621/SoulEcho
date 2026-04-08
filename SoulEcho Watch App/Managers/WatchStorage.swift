@@ -6,12 +6,14 @@ struct WatchQuote: Codable {
 }
 
 struct WatchLocalizedEntry: Codable {
+    let category: String?
     let contentZh: String
     let authorZh: String
     let contentEn: String
     let authorEn: String
     
     enum CodingKeys: String, CodingKey {
+        case category
         case contentZh = "content_zh"
         case authorZh = "author_zh"
         case contentEn = "content_en"
@@ -46,11 +48,11 @@ class WatchStorage {
     
     // 内嵌兜底
     private let fallbackEntries = [
-        WatchLocalizedEntry(
+        WatchLocalizedEntry(category: "calming",
             contentZh: "无论你在此刻感到何种情绪，允许它的存在，并安静地与之共处。", authorZh: "SoulEcho",
             contentEn: "Whatever emotion you feel right now, allow it to exist. Sit quietly with it.", authorEn: "SoulEcho"
         ),
-        WatchLocalizedEntry(
+        WatchLocalizedEntry(category: "calming",
             contentZh: "你不需要刻意去追寻平静，只需停止搅动这潭水。", authorZh: "阿姜查",
             contentEn: "You don't need to try to be peaceful. Just stop stirring the water.", authorEn: "Ajahn Chah"
         )
@@ -58,10 +60,10 @@ class WatchStorage {
     
     // MARK: - 主入口：拉取并返回一条新语录
     
-    func fetchFreshQuote() async -> WatchQuote {
+    func fetchFreshQuote(for category: String? = nil) async -> WatchQuote {
         // 1. 尝试网络拉取
         if let bank = await fetchRemoteBank() {
-            let entry = pickUnseenEntry(from: bank.quotes)
+            let entry = pickUnseenEntry(from: bank.quotes, category: category)
             return entry.toQuote()
         }
         
@@ -72,7 +74,7 @@ class WatchStorage {
         
         // 3. 尝试读取本地缓存
         if let cached = loadCachedBank() {
-            let entry = pickUnseenEntry(from: cached.quotes)
+            let entry = pickUnseenEntry(from: cached.quotes, category: category)
             return entry.toQuote()
         }
         
@@ -135,22 +137,37 @@ class WatchStorage {
     
     // MARK: - 智能不重复轮换
     
-    private func pickUnseenEntry(from entries: [WatchLocalizedEntry]) -> WatchLocalizedEntry {
+    func pickUnseenEntry(from allEntries: [WatchLocalizedEntry], category: String? = nil) -> WatchLocalizedEntry {
+        var entries = allEntries
+        if let category = category {
+            let filtered = entries.filter { $0.category == category }
+            if !filtered.isEmpty { entries = filtered }
+        }
+        
         guard !entries.isEmpty else { return fallbackEntries[0] }
         
         var seenIndices = UserDefaults.standard.array(forKey: seenIndicesKey) as? [Int] ?? []
         
-        if seenIndices.count >= entries.count {
+        if seenIndices.count >= allEntries.count {
             seenIndices = []
         }
         
-        let allIndices = Set(0..<entries.count)
-        let unseenIndices = Array(allIndices.subtracting(seenIndices))
+        // 我们只在筛选后的 entries 中找，由于 indices 需要在全集中查，所以我们做内容比对或者重新索引
+        // 为了简便且支持分类过滤，我们在当前 filtered entries 中寻找没被查阅过的
+        // 这里需要一个小小的技巧：我们可以把 content 存进去作为看过，而不是 Index，不过这里仅为演示，继续简化处理
+        let filteredUnseen = entries.filter { entry in
+            let indexInAll = allEntries.firstIndex(where: { $0.contentZh == entry.contentZh }) ?? 0
+            return !seenIndices.contains(indexInAll)
+        }
         
-        let chosenIndex = unseenIndices.randomElement()!
-        seenIndices.append(chosenIndex)
-        UserDefaults.standard.set(seenIndices, forKey: seenIndicesKey)
+        let pool = filteredUnseen.isEmpty ? entries : filteredUnseen
+        let chosenEntry = pool.randomElement()!
         
-        return entries[chosenIndex]
+        if let idx = allEntries.firstIndex(where: { $0.contentZh == chosenEntry.contentZh }) {
+            seenIndices.append(idx)
+            UserDefaults.standard.set(seenIndices, forKey: seenIndicesKey)
+        }
+        
+        return chosenEntry
     }
 }

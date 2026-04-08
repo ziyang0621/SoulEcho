@@ -363,6 +363,8 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				WATCHOS_DEPLOYMENT_TARGET = 26.4;
+				ttttINFOPLIST_KEY_NSHealthShareUsageDescription = "SoulEcho requires access to Health data to identify stress and sedentary moments and send you comforting words.";
+				ttttINFOPLIST_KEY_NSHealthUpdateUsageDescription = "SoulEcho requires access to Health data to function properly.";
 			};
 			name = Debug;
 		};
@@ -398,6 +400,8 @@
 				TARGETED_DEVICE_FAMILY = 4;
 				VALIDATE_PRODUCT = YES;
 				WATCHOS_DEPLOYMENT_TARGET = 26.4;
+				ttttINFOPLIST_KEY_NSHealthShareUsageDescription = "SoulEcho requires access to Health data to identify stress and sedentary moments and send you comforting words.";
+				ttttINFOPLIST_KEY_NSHealthUpdateUsageDescription = "SoulEcho requires access to Health data to function properly.";
 			};
 			name = Release;
 		};
@@ -434,6 +438,8 @@
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				ttttINFOPLIST_KEY_NSHealthShareUsageDescription = "SoulEcho requires access to Health data to identify stress and sedentary moments and send you comforting words.";
+				ttttINFOPLIST_KEY_NSHealthUpdateUsageDescription = "SoulEcho requires access to Health data to function properly.";
 			};
 			name = Debug;
 		};
@@ -471,6 +477,8 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
+				ttttINFOPLIST_KEY_NSHealthShareUsageDescription = "SoulEcho requires access to Health data to identify stress and sedentary moments and send you comforting words.";
+				ttttINFOPLIST_KEY_NSHealthUpdateUsageDescription = "SoulEcho requires access to Health data to function properly.";
 			};
 			name = Release;
 		};
