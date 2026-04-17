@@ -343,7 +343,10 @@
 				DEVELOPMENT_TEAM = M5327AET68;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = WatchAppInfo.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = SoulEcho;
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "SoulEcho requires access to Health data to identify stress and sedentary moments and send you comforting words.";
+				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "SoulEcho requires access to Health data to function properly.";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.ziyang.SoulEcho;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -363,8 +366,6 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				WATCHOS_DEPLOYMENT_TARGET = 26.0;
-								INFOPLIST_KEY_NSHealthShareUsageDescription = "SoulEcho requires access to Health data to identify stress and sedentary moments and send you comforting words.";
-								INFOPLIST_KEY_NSHealthUpdateUsageDescription = "SoulEcho requires access to Health data to function properly.";
 			};
 			name = Debug;
 		};
@@ -379,7 +380,10 @@
 				DEVELOPMENT_TEAM = M5327AET68;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = WatchAppInfo.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = SoulEcho;
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "SoulEcho requires access to Health data to identify stress and sedentary moments and send you comforting words.";
+				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "SoulEcho requires access to Health data to function properly.";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.ziyang.SoulEcho;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -400,8 +404,6 @@
 				TARGETED_DEVICE_FAMILY = 4;
 				VALIDATE_PRODUCT = YES;
 				WATCHOS_DEPLOYMENT_TARGET = 26.0;
-								INFOPLIST_KEY_NSHealthShareUsageDescription = "SoulEcho requires access to Health data to identify stress and sedentary moments and send you comforting words.";
-								INFOPLIST_KEY_NSHealthUpdateUsageDescription = "SoulEcho requires access to Health data to function properly.";
 			};
 			name = Release;
 		};
@@ -417,8 +419,11 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = SoulEcho;
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "SoulEcho requires access to Health data to identify stress and sedentary moments and send you comforting words.";
+				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "SoulEcho requires access to Health data to function properly.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				"INFOPLIST_KEY_UILaunchScreen_[UIColorName]" = SplashBackground;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -438,8 +443,6 @@
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-								INFOPLIST_KEY_NSHealthShareUsageDescription = "SoulEcho requires access to Health data to identify stress and sedentary moments and send you comforting words.";
-								INFOPLIST_KEY_NSHealthUpdateUsageDescription = "SoulEcho requires access to Health data to function properly.";
 			};
 			name = Debug;
 		};
@@ -455,8 +458,11 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = SoulEcho;
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "SoulEcho requires access to Health data to identify stress and sedentary moments and send you comforting words.";
+				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "SoulEcho requires access to Health data to function properly.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				"INFOPLIST_KEY_UILaunchScreen_[UIColorName]" = SplashBackground;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -477,8 +483,6 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
-								INFOPLIST_KEY_NSHealthShareUsageDescription = "SoulEcho requires access to Health data to identify stress and sedentary moments and send you comforting words.";
-								INFOPLIST_KEY_NSHealthUpdateUsageDescription = "SoulEcho requires access to Health data to function properly.";
 			};
 			name = Release;
 		};
