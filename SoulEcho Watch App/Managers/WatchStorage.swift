@@ -67,6 +67,12 @@ class WatchStorage {
             return entry.toQuote()
         }
         
+        return fetchFastLocalQuote(for: category)
+    }
+    
+    // MARK: - 快速本地读取（用于防挂起）
+    
+    func fetchFastLocalQuote(for category: String? = nil) -> WatchQuote {
         // 2. 尝试读取 App Group（真机上 iPhone 可能已写入）
         if let appGroupQuote = loadFromAppGroup() {
             return appGroupQuote

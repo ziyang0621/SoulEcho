@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import UserNotifications
 
 struct ContentView: View {
     @State private var quote = ""
@@ -39,6 +40,7 @@ struct ContentView: View {
                             Image(systemName: "lungs.fill")
                             Text("开始静心 60s")
                         }
+                    }
                     }
                     .tint(.cyan)
                     .padding(.top, 10)
