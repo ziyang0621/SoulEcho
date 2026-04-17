@@ -7,8 +7,8 @@ struct HomeView: View {
     
     var body: some View {
         ZStack {
-            // Animated Gradient Background
-            LinearGradient(colors: [Color(hex: "1a2a6c"), Color(hex: "11998e"), Color(hex: "38ef7d")],
+            // Animated Gradient Background - White & Gold Theme
+            LinearGradient(colors: [Color(hex: "FFFFFF"), Color(hex: "F8F6F0"), Color(hex: "DCCA87")],
                            startPoint: animateGradient ? .topLeading : .bottomLeading,
                            endPoint: animateGradient ? .bottomTrailing : .topTrailing)
                 .ignoresSafeArea()
@@ -23,24 +23,24 @@ struct HomeView: View {
                 // Quote Section
                 if quoteService.isLoading {
                     ProgressView()
-                        .tint(.white)
+                        .tint(Color(hex: "BFA054"))
                 } else if let quote = quoteService.currentQuote {
                     VStack(spacing: 20) {
                         Text("“\(quote.content)”")
                             .font(.system(size: 28, weight: .semibold, design: .serif))
-                            .foregroundColor(.white)
+                            .foregroundColor(Color(hex: "3B3012"))
                             .multilineTextAlignment(.center)
                             .lineSpacing(8)
-                            .shadow(color: .black.opacity(0.3), radius: 5, x: 0, y: 5)
+                            .shadow(color: .white.opacity(0.5), radius: 5, x: 0, y: 2)
                             .padding(.horizontal, 20)
                         
                         Text("- \(quote.author) -")
                             .font(.system(size: 18, weight: .medium, design: .serif))
-                            .foregroundColor(.white.opacity(0.8))
+                            .foregroundColor(Color(hex: "5A4C2E"))
                     }
                 } else {
                     Text("无法获取今日引言")
-                        .foregroundColor(.white.opacity(0.7))
+                        .foregroundColor(Color(hex: "5A4C2E").opacity(0.7))
                 }
                 
                 Spacer()
@@ -50,11 +50,11 @@ struct HomeView: View {
                     HStack(spacing: 16) {
                         Image(systemName: recommendation.isSuitableForOutdoor ? "leaf.fill" : "house.fill")
                             .font(.system(size: 24))
-                            .foregroundColor(.white)
+                            .foregroundColor(Color(hex: "8C7221"))
                         
                         Text(recommendation.message)
                             .font(.system(size: 16, weight: .medium))
-                            .foregroundColor(.white.opacity(0.9))
+                            .foregroundColor(Color(hex: "3B3012").opacity(0.9))
                             .multilineTextAlignment(.leading)
                     }
                     .padding(20)
@@ -64,7 +64,7 @@ struct HomeView: View {
                     .padding(.horizontal, 24)
                 } else if weatherService.isLoading {
                     ProgressView()
-                        .tint(.white)
+                        .tint(Color(hex: "BFA054"))
                 }
                 
                 Spacer().frame(height: 40)
