@@ -12,25 +12,21 @@ struct ContentView: View {
     
     var body: some View {
         ZStack {
+            HomeView()
+                .opacity(showSplash ? 0 : 1)
+            
             if showSplash {
-                SplashView()
+                SplashView(showSplash: $showSplash)
                     .transition(.opacity)
-            } else {
-                HomeView()
-                    .transition(.opacity)
-            }
-        }
-        .onAppear {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
-                withAnimation(.easeInOut(duration: 0.8)) {
-                    showSplash = false
-                }
+                    .zIndex(1)
             }
         }
     }
 }
 
 struct SplashView: View {
+    @Binding var showSplash: Bool
+    
     @State private var opacity = 0.0
     @State private var logoScale = 0.8
     
@@ -60,6 +56,13 @@ struct SplashView: View {
             withAnimation(.easeOut(duration: 1.2)) {
                 opacity = 1.0
                 logoScale = 1.0
+            }
+            
+            // Dispatch the hide directly from the child component
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
+                withAnimation(.easeInOut(duration: 0.8)) {
+                    showSplash = false
+                }
             }
         }
     }
