@@ -41,7 +41,6 @@ struct ContentView: View {
                             Text("开始静心 60s")
                         }
                     }
-                    }
                     .tint(.cyan)
                     .padding(.top, 10)
                 }
