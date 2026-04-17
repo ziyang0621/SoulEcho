@@ -4,6 +4,7 @@ struct HomeView: View {
     @State private var quoteService = QuoteService()
     @State private var weatherService = WeatherService()
     @State private var animateGradient = false
+    @State private var quoteScale: CGFloat = 1.0
     
     var body: some View {
         ZStack {
@@ -38,6 +39,17 @@ struct HomeView: View {
                             .font(.system(size: 18, weight: .medium, design: .serif))
                             .foregroundColor(Color(hex: "5A4C2E"))
                     }
+                    .scaleEffect(quoteScale)
+                    .onTapGesture {
+                        withAnimation(.spring(response: 0.3, dampingFraction: 0.5)) {
+                            quoteScale = 0.95
+                        }
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.15) {
+                            withAnimation(.spring(response: 0.3, dampingFraction: 0.5)) {
+                                quoteScale = 1.0
+                            }
+                        }
+                    }
                 } else {
                     Text("无法获取今日引言")
                         .foregroundColor(Color(hex: "5A4C2E").opacity(0.7))
@@ -58,9 +70,10 @@ struct HomeView: View {
                             .multilineTextAlignment(.leading)
                     }
                     .padding(20)
-                    .background(.ultraThinMaterial)
+                    .background(Color.white.opacity(0.3)) // More transparent and lighter
+                    .background(.ultraThinMaterial) // Gives that nice frosted glass blur behind it
                     .cornerRadius(20)
-                    .shadow(color: .black.opacity(0.15), radius: 10, x: 0, y: 10)
+                    .shadow(color: .black.opacity(0.05), radius: 10, x: 0, y: 10)
                     .padding(.horizontal, 24)
                 } else if weatherService.isLoading {
                     ProgressView()
