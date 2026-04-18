@@ -73,18 +73,18 @@ class WatchStorage {
     // MARK: - 快速本地读取（用于防挂起）
     
     func fetchFastLocalQuote(for category: String? = nil) -> WatchQuote {
-        // 2. 尝试读取 App Group（真机上 iPhone 可能已写入）
-        if let appGroupQuote = loadFromAppGroup() {
-            return appGroupQuote
-        }
-        
-        // 3. 尝试读取本地缓存
+        // 1. 优先使用本地缓存库（支持随机不重复）
         if let cached = loadCachedBank() {
             let entry = pickUnseenEntry(from: cached.quotes, category: category)
             return entry.toQuote()
         }
         
-        // 4. 最终兜底
+        // 2. 尝试读取 App Group（iPhone 写入的每日一句）
+        if let appGroupQuote = loadFromAppGroup() {
+            return appGroupQuote
+        }
+        
+        // 3. 最终兜底：随机选一条
         let entry = fallbackEntries.randomElement()!
         return entry.toQuote()
     }
