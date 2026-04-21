@@ -17,10 +17,10 @@ final class HealthObserverManager: @unchecked Sendable {
     private let stressNotifActiveKey = "stressNotifActive"
     
     // 参数
-    private let sedentaryInterval: TimeInterval = 30 * 60  // 久坐：30分钟间隔
-    private let sedentaryBatchCount = 8                     // 久坐：8条（覆盖4小时）
-    private let stressInterval: TimeInterval = 60 * 60     // 压力：1小时间隔（不要太密）
-    private let stressBatchCount = 4                        // 压力：4条（覆盖4小时）
+    private let sedentaryInterval: TimeInterval = 60 * 60  // 久坐：1小时间隔
+    private let sedentaryBatchCount = 4                     // 久坐：4条（覆盖4小时）
+    private let stressInterval: TimeInterval = 2 * 60 * 60 // 压力：2小时检测（不要太密）
+    private let stressBatchCount = 2                        // 压力：2条（覆盖4小时）
     
     // MARK: - 权限
     
