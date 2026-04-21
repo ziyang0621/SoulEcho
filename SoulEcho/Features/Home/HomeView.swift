@@ -79,28 +79,6 @@ struct HomeView: View {
                                  Text(healthService.hrvStatusText)
                                      .font(.system(size: 16, weight: .semibold))
                                      .foregroundColor(Color(hex: "3B3012"))
-                                 
-                                 Spacer()
-                                 
-                                 if let timestamp = healthService.hrvTimestamp {
-                                     let isEnglish = Locale.current.language.languageCode?.identifier != "zh"
-                                     
-                                     Group {
-                                         if isEnglish {
-                                             Text("上次更新")
-                                         }
-                                         
-                                         Text(timestamp, style: .relative)
-                                         
-                                         if !isEnglish {
-                                             Text("前更新")
-                                         } else {
-                                             Text("前更新")
-                                         }
-                                     }
-                                     .font(.system(size: 12))
-                                     .foregroundColor(Color(hex: "5A4C2E").opacity(0.6))
-                                 }
                              }
                          }
                          .padding(20)
