@@ -130,7 +130,7 @@ final class HealthObserverManager: @unchecked Sendable {
                     // 用户刚进入久坐状态，批量预约多条不同内容的提醒
                     await scheduleSedentaryBatch()
                     markSedentaryNotifActive(true)
-                    print("[Timer] ✅ Sedentary notification batch scheduled (\(batchCount) notifications)")
+                    print("[Timer] ✅ Sedentary notification batch scheduled (\(sedentaryBatchCount) notifications)")
                 } else {
                     print("[Timer] ℹ️ Repeating sedentary notification already active, no action needed")
                 }
