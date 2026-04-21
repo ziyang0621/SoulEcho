@@ -85,20 +85,22 @@ struct HomeView: View {
                                  if let timestamp = healthService.hrvTimestamp {
                                      let isEnglish = Locale.current.language.languageCode?.identifier != "zh"
                                      
-                                     if isEnglish {
-                                         Text("上次更新")
+                                     Group {
+                                         if isEnglish {
+                                             Text("上次更新")
+                                         }
+                                         
+                                         Text(timestamp, style: .relative)
+                                         
+                                         if !isEnglish {
+                                             Text("前更新")
+                                         } else {
+                                             Text("前更新")
+                                         }
                                      }
-                                     
-                                     Text(timestamp, style: .relative)
-                                     
-                                     if !isEnglish {
-                                         Text("前更新")
-                                     } else {
-                                         Text("前更新") // This will use "ago" from localizable
-                                     }
+                                     .font(.system(size: 12))
+                                     .foregroundColor(Color(hex: "5A4C2E").opacity(0.6))
                                  }
-                                 .font(.system(size: 12))
-                                 .foregroundColor(Color(hex: "5A4C2E").opacity(0.6))
                              }
                          }
                          .padding(20)
