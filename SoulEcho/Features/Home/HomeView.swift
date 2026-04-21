@@ -79,6 +79,14 @@ struct HomeView: View {
                                  Text(healthService.hrvStatusText)
                                      .font(.system(size: 16, weight: .semibold))
                                      .foregroundColor(Color(hex: "3B3012"))
+                                     
+                                 Spacer()
+                                 
+                                 if healthService.hrvTimestamp != nil {
+                                     Text(healthService.hrvTimeAgoText)
+                                         .font(.system(size: 12))
+                                         .foregroundColor(Color(hex: "5A4C2E").opacity(0.6))
+                                 }
                              }
                          }
                          .padding(20)

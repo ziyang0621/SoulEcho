@@ -60,4 +60,19 @@ class HealthService {
         if hrv >= 40 { return "F1C40F" } // Yellow
         return "E74C3C" // Red
     }
+    
+    var hrvTimeAgoText: String {
+        guard let timestamp = hrvTimestamp else { return "" }
+        let diff = Int(Date().timeIntervalSince(timestamp) / 60)
+        let isEnglish = Locale.current.language.languageCode?.identifier != "zh"
+        
+        if diff < 1 {
+            return isEnglish ? "Updated just now" : "刚刚更新"
+        } else if diff < 60 {
+            return isEnglish ? "Updated \(diff)m ago" : "\(diff) 分钟前更新"
+        } else {
+            let hours = diff / 60
+            return isEnglish ? "Updated \(hours)h ago" : "\(hours) 小时前更新"
+        }
+    }
 }
