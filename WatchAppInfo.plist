@@ -4,7 +4,6 @@
 <dict>
 	<key>WKBackgroundModes</key>
 	<array>
-		<string>self-care</string>
 		<string>mindfulness</string>
 	</array>
 </dict>
