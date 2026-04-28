@@ -2,6 +2,20 @@ import Foundation
 import HealthKit
 import UserNotifications
 
+enum WatchHRVAccessState {
+    case notDetermined
+    case available
+    case noRecentSample
+    case unavailable
+    case permissionPossiblyOff
+}
+
+struct WatchHRVSnapshot {
+    let value: Double?
+    let timestamp: Date?
+    let accessState: WatchHRVAccessState
+}
+
 final class HealthObserverManager: @unchecked Sendable {
     static let shared = HealthObserverManager()
     
@@ -15,6 +29,7 @@ final class HealthObserverManager: @unchecked Sendable {
     // Keys
     private let sedentaryNotifActiveKey = "sedentaryNotifActive"
     private let stressNotifActiveKey = "stressNotifActive"
+    private let permissionRequestedKey = "watch_health_hrv_permission_requested"
     
     // 参数
     private let sedentaryInterval: TimeInterval = 60 * 60  // 久坐：1小时间隔
@@ -30,6 +45,7 @@ final class HealthObserverManager: @unchecked Sendable {
             return
         }
         healthStore.requestAuthorization(toShare: nil, read: [hrvType, stepType]) { ok, err in
+            UserDefaults.standard.set(true, forKey: self.permissionRequestedKey)
             print("[HK] Auth result: \(ok), error: \(String(describing: err))")
             if ok {
                 self.startStepObserver()
@@ -338,17 +354,17 @@ final class HealthObserverManager: @unchecked Sendable {
     
     // MARK: - 获取最新 HRV（供 UI 展示）
     
-    func fetchLatestHRV() async -> (Double?, Date?) {
-        // 先检查授权状态
-        let authStatus = healthStore.authorizationStatus(for: hrvType)
-        print("[HRV-UI] Authorization status: \(authStatus.rawValue) (0=notDetermined, 1=denied, 2=authorized)")
+    func fetchLatestHRV() async -> WatchHRVSnapshot {
+        guard HKHealthStore.isHealthDataAvailable() else {
+            return WatchHRVSnapshot(value: nil, timestamp: nil, accessState: .unavailable)
+        }
         
         return await withCheckedContinuation { continuation in
             let sortDesc = NSSortDescriptor(key: HKSampleSortIdentifierEndDate, ascending: false)
             let query = HKSampleQuery(sampleType: self.hrvType, predicate: nil, limit: 1, sortDescriptors: [sortDesc]) { _, samples, error in
                 if let error = error {
                     print("[HRV-UI] ❌ Query error: \(error)")
-                    continuation.resume(returning: (nil, nil))
+                    continuation.resume(returning: WatchHRVSnapshot(value: nil, timestamp: nil, accessState: .permissionPossiblyOff))
                     return
                 }
                 
@@ -356,15 +372,20 @@ final class HealthObserverManager: @unchecked Sendable {
                 
                 guard let sample = samples?.first as? HKQuantitySample else {
                     print("[HRV-UI] ⚠️ No HRV samples found")
-                    continuation.resume(returning: (nil, nil))
+                    let accessState: WatchHRVAccessState = self.hasRequestedHealthPermission ? .noRecentSample : .notDetermined
+                    continuation.resume(returning: WatchHRVSnapshot(value: nil, timestamp: nil, accessState: accessState))
                     return
                 }
                 let hrv = sample.quantity.doubleValue(for: HKUnit.secondUnit(with: .milli))
                 print("[HRV-UI] ✅ HRV: \(hrv) ms, date: \(sample.endDate)")
-                continuation.resume(returning: (hrv, sample.endDate))
+                continuation.resume(returning: WatchHRVSnapshot(value: hrv, timestamp: sample.endDate, accessState: .available))
             }
             self.healthStore.execute(query)
         }
+    }
+
+    var hasRequestedHealthPermission: Bool {
+        UserDefaults.standard.bool(forKey: permissionRequestedKey)
     }
     
     // MARK: - 状态管理

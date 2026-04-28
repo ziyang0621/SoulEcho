@@ -1,4 +1,5 @@
 import SwiftUI
+import UIKit
 
 struct HomeView: View {
     @State private var quoteService = QuoteService()
@@ -57,7 +58,27 @@ struct HomeView: View {
                         }
                         
                         VStack(spacing: 16) {
-                            HRVStatusCard(healthService: healthService)
+                            HRVStatusCard(
+                                healthService: healthService,
+                                connectHealth: {
+                                    Task {
+                                        await healthService.requestAuthorizationAndFetch()
+                                        reflectionService.syncTodayHRV(healthService.hrvValue)
+                                        reflectionService.refreshQuestion(hrvValue: healthService.hrvValue)
+                                    }
+                                },
+                                refreshHealth: {
+                                    Task {
+                                        await healthService.fetchLatestHRV()
+                                        reflectionService.syncTodayHRV(healthService.hrvValue)
+                                        reflectionService.refreshQuestion(hrvValue: healthService.hrvValue)
+                                    }
+                                },
+                                openSettings: {
+                                    guard let url = URL(string: UIApplication.openSettingsURLString) else { return }
+                                    UIApplication.shared.open(url)
+                                }
+                            )
                                 .padding(.horizontal, 24)
                                 .onTapGesture {
                                     isReflectionEditorFocused = false
@@ -117,7 +138,11 @@ struct HomeView: View {
             .task {
                 await quoteService.fetchTodayQuote()
                 await weatherService.fetchWeatherRecommendation()
-                await healthService.requestAuthorizationAndFetch()
+                if healthService.hasRequestedHealthPermission {
+                    await healthService.fetchLatestHRV()
+                } else {
+                    healthService.refreshAccessState()
+                }
             }
             .onChange(of: healthService.hrvValue) { _, newValue in
                 reflectionService.syncTodayHRV(newValue)
@@ -162,6 +187,9 @@ private struct AnimatedGoldBackground: View {
 
 private struct HRVStatusCard: View {
     let healthService: HealthService
+    let connectHealth: () -> Void
+    let refreshHealth: () -> Void
+    let openSettings: () -> Void
 
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
@@ -196,10 +224,37 @@ private struct HRVStatusCard: View {
             }
 
             if healthService.hrvValue == nil {
-                Text(isChinese ? "授权 Health 后，Apple Watch 的最新 HRV 会显示在这里。" : "After Health access is granted, your latest Apple Watch HRV will appear here.")
+                Text(healthService.hrvUnavailableMessage)
                     .font(.system(size: 12, weight: .medium))
                     .foregroundColor(Color(hex: "5A4C2E").opacity(0.62))
                     .fixedSize(horizontal: false, vertical: true)
+
+                HStack(spacing: 10) {
+                    if healthService.shouldShowConnectAction {
+                        Button(action: connectHealth) {
+                            Label(healthService.connectButtonTitle, systemImage: "heart.circle")
+                                .font(.system(size: 13, weight: .semibold))
+                        }
+                        .buttonStyle(.borderedProminent)
+                        .tint(Color(hex: "8C7221"))
+                    } else if healthService.accessState == .noRecentSample {
+                        Button(action: refreshHealth) {
+                            Label(healthService.refreshButtonTitle, systemImage: "arrow.clockwise")
+                                .font(.system(size: 13, weight: .semibold))
+                        }
+                        .buttonStyle(.bordered)
+                        .tint(Color(hex: "8C7221"))
+                    }
+
+                    if healthService.shouldShowSettingsAction {
+                        Button(action: openSettings) {
+                            Label(healthService.settingsButtonTitle, systemImage: "gearshape")
+                                .font(.system(size: 13, weight: .semibold))
+                        }
+                        .buttonStyle(.bordered)
+                        .tint(Color(hex: "8C7221"))
+                    }
+                }
             }
         }
         .padding(20)
@@ -216,7 +271,7 @@ private struct HRVStatusCard: View {
 
     private var statusText: String {
         guard healthService.hrvValue != nil else {
-            return isChinese ? "等待最新数据" : "Waiting for latest data"
+            return healthService.hrvUnavailableTitle
         }
         return healthService.hrvStatusText
     }

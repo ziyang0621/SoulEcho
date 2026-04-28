@@ -14,6 +14,7 @@ struct ContentView: View {
     @State private var isLoading = true
     @State private var hrvValue: Double?
     @State private var hrvTimestamp: Date?
+    @State private var hrvAccessState: WatchHRVAccessState = .notDetermined
     
     var body: some View {
         NavigationStack {
@@ -37,8 +38,7 @@ struct ContentView: View {
                             .foregroundStyle(.secondary)
                     }
                     
-                    // HRV Card
-                    VStack(spacing: 6) {
+                    VStack(spacing: 7) {
                         HStack(spacing: 6) {
                             Image(systemName: "heart.text.square.fill")
                                 .foregroundStyle(hrvColor)
@@ -56,6 +56,7 @@ struct ContentView: View {
                             } else {
                                 Text("--")
                                     .font(.title3)
+                                    .fontWeight(.bold)
                                     .foregroundStyle(.secondary)
                             }
                         }
@@ -72,6 +73,20 @@ struct ContentView: View {
                                         .foregroundStyle(.secondary)
                                 }
                             }
+                        } else {
+                            HStack {
+                                Text(hrvUnavailableTitle)
+                                    .font(.caption2)
+                                    .fontWeight(.semibold)
+                                    .foregroundStyle(hrvColor)
+                                Spacer()
+                            }
+
+                            Text(hrvUnavailableMessage)
+                                .font(.caption2)
+                                .foregroundStyle(.secondary)
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                                .lineLimit(2)
                         }
                     }
                     .padding(12)
@@ -99,9 +114,10 @@ struct ContentView: View {
             isLoading = false
             
             // Fetch HRV
-            let (hrv, time) = await HealthObserverManager.shared.fetchLatestHRV()
-            hrvValue = hrv
-            hrvTimestamp = time
+            let snapshot = await HealthObserverManager.shared.fetchLatestHRV()
+            hrvValue = snapshot.value
+            hrvTimestamp = snapshot.timestamp
+            hrvAccessState = snapshot.accessState
         }
     }
     
@@ -119,6 +135,36 @@ struct ContentView: View {
             return String(localized: "状态一般 💛")
         } else {
             return String(localized: "压力偏高 🧘")
+        }
+    }
+
+    private var hrvUnavailableTitle: String {
+        switch hrvAccessState {
+        case .notDetermined:
+            return String(localized: "Allow Health")
+        case .available:
+            return ""
+        case .noRecentSample:
+            return String(localized: "No recent sample")
+        case .unavailable:
+            return String(localized: "Unavailable")
+        case .permissionPossiblyOff:
+            return String(localized: "Check iPhone")
+        }
+    }
+
+    private var hrvUnavailableMessage: String {
+        switch hrvAccessState {
+        case .notDetermined:
+            return String(localized: "Open iPhone to connect.")
+        case .available:
+            return ""
+        case .noRecentSample:
+            return String(localized: "Wear Apple Watch longer.")
+        case .unavailable:
+            return String(localized: "Health is not available.")
+        case .permissionPossiblyOff:
+            return String(localized: "Review Health settings.")
         }
     }
 }

@@ -60,6 +60,22 @@ Choices:
 
 The check-in supports partial completion. Saving is allowed if the user either enters text or selects at least one check-in choice.
 
+### HealthKit Access State Management
+
+Files:
+
+- `SoulEcho Watch App/ContentView.swift`
+- `SoulEcho Watch App/Managers/HealthObserverManager.swift`
+- `SoulEcho/Core/Network/HealthService.swift`
+- `SoulEcho/Features/Home/HomeView.swift`
+
+Implemented:
+
+- Robust `HealthAccessState` enum (`.notDetermined`, `.loading`, `.available`, `.noRecentSample`, `.unavailable`, `.permissionPossiblyOff`).
+- Interactive UI to prompt users to "Connect Apple Health", "Refresh", or "Open Settings" when HRV data is missing.
+- Prevents redundant HealthKit authorization prompts using App Group `UserDefaults` (`soulEcho_health_permission_requested`).
+- Localized dynamic messages to clearly explain to the user why data might be missing and how to resolve it.
+
 ### Home Screen Changes
 
 File:

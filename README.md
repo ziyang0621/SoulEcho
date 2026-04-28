@@ -12,6 +12,9 @@ The current product direction is not just "show health data." It helps users com
 - Daily quote experience with localized Chinese / English display.
 - HRV status card that always stays visible on the home screen:
   - Shows latest HRV when HealthKit has data.
+  - Features interactive states based on HealthKit permission:
+    - **Connect Apple Health**: Prompts the user to authorize HealthKit if not determined.
+    - **Refresh / Open Settings**: Guides the user if data is missing or permission might be turned off.
   - Shows a clear waiting state when running in simulator or before Health access/data is available.
 - Weather recommendation card using lightweight weather context for outdoor reflection suggestions.
 - Daily Reflection entry point:
