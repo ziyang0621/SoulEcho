@@ -1,39 +1,132 @@
-# SoulEcho 🌿
+# SoulEcho
 
-SoulEcho 是一款专注于身心灵滋养和情绪记录的静心应用。通过极高美感的动态视觉、原生 Apple 硬件触感反馈、以及 **AI 驱动的健康情境感知**，为您带来随身的宁静与治愈体验。
+SoulEcho is a SwiftUI iOS + watchOS wellbeing app that combines HRV context, daily reflection, short check-ins, quotes, weather-aware prompts, and a 60-day insight dashboard.
 
-目前项目包含 **iOS** 及 **watchOS** 两大组成部分，通过云端数据同步、HealthKit 后台监听与原生 Apple `App Group` 构建出全方位的治愈生态。
+The current product direction is not just "show health data." It helps users compare objective signals from Apple Watch, especially HRV, with subjective emotional state so they can stay calm, positive, and better understand their personal stress patterns.
 
-## ✨ 核心特性
+## Current Features
 
-### ⌚️ watchOS 端 (身心灵守护中心)
-*   **HealthKit 情境感知 (Real-time Context)**：
-    *   **压力/焦虑识别**：实时监测心率变异性 (HRV) 数据。当探测到交感神经异常活跃（HRV 跌破临界值）时，自动判定为高压焦灼态。
-    *   **久坐/低活力识别**：后台追踪步数累积。当监测到长期静止（2小时内步数极低）时，判定为身体僵硬态。
-*   **主动推送关怀 (Proactive Notifications)**：基于上述生理情境，应用会在后台自动唤醒，并从云端筛选出最贴合当下状态的治愈箴言（如：对焦虑者推送舒缓语句，对久坐者推送行动激励），通过 Taptic Engine 温柔震动并下发通知。
-*   **原生光电伴随冥想 (`ReflectView`)**：60 秒沉浸式呼吸引导，光圈随呼吸节奏柔和缩放，搭配 4-4 触觉律动 (Haptics)。
-*   **独立联网与分类语录**：手表端具备独立从 GitHub 拉取语录的能力。引言库已完全类别化（`calming`, `motivating`, `general`），确保关怀精准送达。
+### iOS App
 
-### 📱 iOS 端 (治愈中枢)
-*   **动态流光美学**：主页采用深度定制的 `LinearGradient` 流体动画，搭配原生 `UltraThinMaterial` (毛玻璃) 构建出高级沉浸感 UI。
-*   **全球双语支持**：应用原生支持 **中英双语** 自动切换。界面文案、引言库均会根据系统语言设置自动本地化适配。
-*   **极简户外冥想提示**：利用极速 IP 定位匹配 `Open-Meteo` 天气系统，智能建议每日是否适合户外静心，全程无需向用户索要隐私定位权限。
-*   **三级降级保护策略**：优先 GitHub 拉取 -> 本地缓存读取 -> 内嵌保底文案。
+- Home screen with a warm white-gold visual style and soft material cards.
+- Daily quote experience with localized Chinese / English display.
+- HRV status card that always stays visible on the home screen:
+  - Shows latest HRV when HealthKit has data.
+  - Shows a clear waiting state when running in simulator or before Health access/data is available.
+- Weather recommendation card using lightweight weather context for outdoor reflection suggestions.
+- Daily Reflection entry point:
+  - Home screen stays compact.
+  - Tapping `Start` / `Edit` slides up a native iOS sheet for daily reflection.
+  - Saving slides the sheet back down.
+  - Keyboard dismisses when tapping outside the text area or interacting with check-in choices.
+- Daily 3-question check-in:
+  - Physical Scan
+  - Mental Pace
+  - Emotional Filter
+  - Each question uses A/B/C choices mapped to scores 1/2/3.
+- Reflection History:
+  - Saves one reflection per day.
+  - Stores date, question, answer, HRV, quote, and check-in data.
+  - Shows historical entries with HRV and check-in summaries.
+- 60-Day Insight Dashboard:
+  - Average HRV.
+  - Subjective resilience score.
+  - HRV / subjective alignment percentage.
+  - HRV and subjective trend overlap chart.
+  - Mind-body quadrant map.
+  - Month-grouped 60-day check-in heatmap calendar.
+  - Go-forward signals:
+    - False Stress Indicator
+    - Hidden Toll Indicator
+    - RPM Warning
 
-## 🛠️ 技术栈与架构
-*   **iOS 17+ & watchOS 10+** (Swift & SwiftUI)
-*   **HealthKit Background Delivery** 实现基于生理指标的后台监听。
-*   **UserNotifications** 在 Watch 端独立分发本地即时通知。
-*   **Observation Macro** (`@Observable`) 构建高效响应式数据流。
-*   **String Catalog** (`.xcstrings`) 全面的多国语言管理。
-*   **App Groups** 实现 iPhone 与 Watch 间的近端高速数据同步。
+### watchOS App
 
-## 🚀 快速启动
-1.  克隆或下载本仓库代码。
-2.  在 Xcode 15+ 中打开 `SoulEcho.xcodeproj`。
-3.  点击 **Signing & Capabilities** 登入个人 Apple ID，并确保勾选了 `App Groups` 和 `HealthKit` 权限。
-4.  **真机测试建议**：为获得最佳体验，请将 App 部署至真实的 **Apple Watch (Series 10 推荐)**。首次运行请允许“健康数据获取”和“通知”权限。
-5.  若在模拟器运行，系统会默认读取预设的演示数据。
+- Watch companion target is present.
+- HealthKit and notification-oriented architecture exists for watch-side care prompts.
+- Reflect view and watch haptics managers are part of the app structure.
 
----
-*“无论你在此刻感到何种情绪，允许它的存在，并安静地与之共处。”* —— SoulEcho
+## Key Architecture
+
+- SwiftUI app using the Observation framework (`@Observable`).
+- HealthKit integration for HRV.
+- UserDefaults-backed reflection persistence.
+- String Catalog localization with Chinese / English copy.
+- App Groups are configured for iPhone / Watch sharing.
+
+## Important Files
+
+- `SoulEcho/Features/Home/HomeView.swift`
+  - Main home UI.
+  - HRV card.
+  - Daily Reflection launcher.
+  - Sheet presentation for daily reflection.
+  - Navigation to History and Insights.
+
+- `SoulEcho/Core/Models/Reflection.swift`
+  - Reflection models.
+  - `DailyCheckIn`.
+  - `CheckInChoice`.
+
+- `SoulEcho/Core/Storage/ReflectionService.swift`
+  - Daily question selection.
+  - Save/update current day's reflection.
+  - Persist/load reflection history.
+  - Sync today's HRV into an existing reflection entry.
+
+- `SoulEcho/Features/Reflection/ReflectionHistoryView.swift`
+  - Reflection history list.
+  - Per-entry HRV and check-in summaries.
+
+- `SoulEcho/Features/Reflection/ReflectionInsightsView.swift`
+  - 60-day dashboard.
+  - Local chart rendering in SwiftUI.
+  - Trend, quadrant map, heatmap calendar, and insight/action calculations.
+
+- `SoulEcho/Core/Network/HealthService.swift`
+  - HealthKit authorization.
+  - Latest HRV fetch.
+  - HRV status/color helpers.
+
+## Build And Run
+
+Open the project in Xcode:
+
+```text
+SoulEcho.xcodeproj
+```
+
+Recommended simulator target:
+
+```text
+iPhone 17, iOS 26.4
+```
+
+CLI build:
+
+```bash
+xcodebuild -project SoulEcho.xcodeproj -scheme SoulEcho -destination 'generic/platform=iOS' CODE_SIGNING_ALLOWED=NO build
+```
+
+Simulator build/run in Codex uses the Build iOS Apps plugin with:
+
+```text
+project: SoulEcho.xcodeproj
+scheme: SoulEcho
+bundle id: com.ziyang.SoulEcho
+```
+
+## Notes For Testing
+
+- Simulator usually does not have real HealthKit HRV samples, so the HRV card may show `-- ms`.
+- Real HRV behavior should be tested on a physical iPhone paired with Apple Watch.
+- Daily reflection and insight dashboard can be tested in simulator because reflection data is stored locally.
+- The 60-day dashboard becomes more meaningful after multiple days of check-ins and HRV samples.
+
+## Product Direction
+
+SoulEcho is moving toward a "biofeedback vs. lived experience" loop:
+
+- HRV tells the user what the body may be experiencing.
+- Daily check-in tells the user how they feel subjectively.
+- History and 60-day insights reveal whether the user's body and mind are aligned, disconnected, or showing early stress patterns.
