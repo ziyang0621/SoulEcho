@@ -102,11 +102,11 @@ struct ContentView: View {
                         HStack {
                             Image(systemName: hasCheckedInToday ? "checkmark.circle.fill" : "face.smiling.inverse")
                             Text(hasCheckedInToday
-                                 ? (isChinese ? "已打卡 ✓" : "Checked in ✓")
+                                 ? (isChinese ? "已打卡 · 编辑" : "Checked in · Edit")
                                  : (isChinese ? "快速打卡" : "Quick Check-in"))
                         }
                     }
-                    .tint(hasCheckedInToday ? .gray : .orange)
+                    .tint(.orange)
                     .padding(.top, 10)
                     
                     NavigationLink(destination: ReflectView()) {

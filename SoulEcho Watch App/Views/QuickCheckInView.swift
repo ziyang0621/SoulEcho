@@ -7,7 +7,6 @@ struct QuickCheckInView: View {
     @State private var emotional: Int?
     @State private var currentStep = 0
     @State private var showConfirmation = false
-    @State private var hasCheckedIn: Bool
 
     private let isChinese = Locale.current.language.languageCode?.identifier == "zh"
 
@@ -40,14 +39,10 @@ struct QuickCheckInView: View {
         ]
     }
 
-    init() {
-        _hasCheckedIn = State(initialValue: WatchStorage.shared.hasCheckedInToday())
-    }
-
     var body: some View {
         ScrollView {
             VStack(spacing: 16) {
-                if showConfirmation || hasCheckedIn {
+                if showConfirmation {
                     confirmedView
                 } else {
                     stepView
@@ -133,10 +128,6 @@ struct QuickCheckInView: View {
             withAnimation(.easeInOut(duration: 0.3)) {
                 showConfirmation = true
             }
-
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-                dismiss()
-            }
         }
     }
 
@@ -157,6 +148,26 @@ struct QuickCheckInView: View {
                 summaryDot(emoji: emojiFor(step: 1, score: mental), label: isChinese ? "思维" : "Mind")
                 summaryDot(emoji: emojiFor(step: 2, score: emotional), label: isChinese ? "情绪" : "Mood")
             }
+
+            Button {
+                // Reset to allow re-doing
+                withAnimation(.easeInOut(duration: 0.25)) {
+                    physical = nil
+                    mental = nil
+                    emotional = nil
+                    currentStep = 0
+                    showConfirmation = false
+                }
+            } label: {
+                HStack(spacing: 4) {
+                    Image(systemName: "arrow.counterclockwise")
+                    Text(isChinese ? "重新打卡" : "Redo")
+                }
+                .font(.system(size: 14, weight: .medium))
+            }
+            .buttonStyle(.bordered)
+            .tint(.orange)
+            .padding(.top, 6)
         }
         .frame(maxWidth: .infinity)
         .padding(.vertical, 16)
