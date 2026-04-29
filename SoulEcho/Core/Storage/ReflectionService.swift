@@ -30,47 +30,58 @@ final class ReflectionService {
 
         struct WatchRecord: Codable {
             let dateKey: String
-            let score: Int
+            let physical: Int
+            let mental: Int
+            let emotional: Int
             let timestamp: Date
         }
 
         guard let record = try? JSONDecoder().decode(WatchRecord.self, from: data),
               record.dateKey == Self.dateKey(for: Date()) else { return }
 
-        // Map score to CheckInChoice
-        let choice: CheckInChoice
-        switch record.score {
-        case 1: choice = .a
-        case 2: choice = .b
-        case 3: choice = .c
-        default: return
+        func toChoice(_ score: Int) -> CheckInChoice? {
+            switch score {
+            case 1: return .a
+            case 2: return .b
+            case 3: return .c
+            default: return nil
+            }
         }
 
-        // Only merge if emotional is not already set
-        if checkIn.emotional == nil {
-            checkIn.emotional = choice
-            
-            // If there's already a today entry, update it
-            if let existing = todayEntry {
-                let updated = ReflectionEntry(
-                    id: existing.id,
-                    dateKey: existing.dateKey,
-                    question: existing.question,
-                    answer: existing.answer,
-                    checkIn: checkIn,
-                    hrvValue: existing.hrvValue,
-                    quoteContent: existing.quoteContent,
-                    quoteAuthor: existing.quoteAuthor,
-                    createdAt: existing.createdAt,
-                    updatedAt: Date()
-                )
-                entries.removeAll { $0.dateKey == existing.dateKey }
-                entries.insert(updated, at: 0)
-                todayEntry = updated
-                persistEntries()
-            }
-            print("[iPhone] ✅ Merged Watch check-in: score=\(record.score)")
+        // Only fill dimensions that are still empty
+        var changed = false
+        if checkIn.physical == nil, let c = toChoice(record.physical) {
+            checkIn.physical = c; changed = true
         }
+        if checkIn.mental == nil, let c = toChoice(record.mental) {
+            checkIn.mental = c; changed = true
+        }
+        if checkIn.emotional == nil, let c = toChoice(record.emotional) {
+            checkIn.emotional = c; changed = true
+        }
+
+        guard changed else { return }
+
+        // If there's already a today entry, update it
+        if let existing = todayEntry {
+            let updated = ReflectionEntry(
+                id: existing.id,
+                dateKey: existing.dateKey,
+                question: existing.question,
+                answer: existing.answer,
+                checkIn: checkIn,
+                hrvValue: existing.hrvValue,
+                quoteContent: existing.quoteContent,
+                quoteAuthor: existing.quoteAuthor,
+                createdAt: existing.createdAt,
+                updatedAt: Date()
+            )
+            entries.removeAll { $0.dateKey == existing.dateKey }
+            entries.insert(updated, at: 0)
+            todayEntry = updated
+            persistEntries()
+        }
+        print("[iPhone] ✅ Merged Watch check-in: P=\(record.physical) M=\(record.mental) E=\(record.emotional)")
     }
 
     func refreshQuestion(hrvValue: Double?) {

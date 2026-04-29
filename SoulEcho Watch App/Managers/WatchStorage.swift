@@ -183,32 +183,36 @@ class WatchStorage {
     
     struct WatchCheckInRecord: Codable {
         let dateKey: String
-        let score: Int
+        let physical: Int
+        let mental: Int
+        let emotional: Int
         let timestamp: Date
     }
     
-    func saveQuickCheckIn(score: Int) {
+    func saveQuickCheckIn(physical: Int, mental: Int, emotional: Int) {
         let record = WatchCheckInRecord(
             dateKey: Self.todayDateKey(),
-            score: score,
+            physical: physical,
+            mental: mental,
+            emotional: emotional,
             timestamp: Date()
         )
         guard let data = try? JSONEncoder().encode(record) else { return }
         userDefaults?.set(data, forKey: checkInKey)
-        print("[Watch] ✅ Quick check-in saved: score=\(score)")
+        print("[Watch] ✅ Quick check-in saved: P=\(physical) M=\(mental) E=\(emotional)")
     }
     
-    func loadTodayQuickCheckIn() -> Int? {
+    func loadTodayCheckInRecord() -> WatchCheckInRecord? {
         guard let data = userDefaults?.data(forKey: checkInKey),
               let record = try? JSONDecoder().decode(WatchCheckInRecord.self, from: data),
               record.dateKey == Self.todayDateKey() else {
             return nil
         }
-        return record.score
+        return record
     }
     
     func hasCheckedInToday() -> Bool {
-        loadTodayQuickCheckIn() != nil
+        loadTodayCheckInRecord() != nil
     }
     
     private static func todayDateKey() -> String {

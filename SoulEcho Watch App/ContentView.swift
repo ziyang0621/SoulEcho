@@ -98,15 +98,6 @@ struct ContentView: View {
                     )
                     .padding(.horizontal, 2)
                     
-                    NavigationLink(destination: ReflectView()) {
-                        HStack {
-                            Image(systemName: "lungs.fill")
-                            Text("开始静心 60s")
-                        }
-                    }
-                    .tint(.cyan)
-                    .padding(.top, 10)
-                    
                     NavigationLink(destination: QuickCheckInView()) {
                         HStack {
                             Image(systemName: hasCheckedInToday ? "checkmark.circle.fill" : "face.smiling.inverse")
@@ -116,6 +107,15 @@ struct ContentView: View {
                         }
                     }
                     .tint(hasCheckedInToday ? .gray : .orange)
+                    .padding(.top, 10)
+                    
+                    NavigationLink(destination: ReflectView()) {
+                        HStack {
+                            Image(systemName: "lungs.fill")
+                            Text("开始静心 60s")
+                        }
+                    }
+                    .tint(.cyan)
                     .padding(.top, 2)
                 }
             }
