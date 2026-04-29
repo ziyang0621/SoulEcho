@@ -23,7 +23,8 @@ final class ReflectionService {
         mergeWatchCheckIn()
     }
 
-    /// Reads Watch quick check-in from App Group and merges it into today's reflection
+    /// Reads Watch quick check-in from App Group and merges it into today's reflection.
+    /// Watch data always overwrites iPhone check-in since it is newer.
     func mergeWatchCheckIn() {
         guard let groupDefaults = UserDefaults(suiteName: groupIdentifier),
               let data = groupDefaults.data(forKey: watchCheckInKey) else { return }
@@ -39,6 +40,12 @@ final class ReflectionService {
         guard let record = try? JSONDecoder().decode(WatchRecord.self, from: data),
               record.dateKey == Self.dateKey(for: Date()) else { return }
 
+        // Skip if we already merged this exact Watch record
+        let mergedKey = "last_merged_watch_checkin_ts"
+        let lastMergedTs = groupDefaults.double(forKey: mergedKey)
+        let recordTs = record.timestamp.timeIntervalSince1970
+        guard recordTs > lastMergedTs else { return }
+
         func toChoice(_ score: Int) -> CheckInChoice? {
             switch score {
             case 1: return .a
@@ -48,21 +55,12 @@ final class ReflectionService {
             }
         }
 
-        // Only fill dimensions that are still empty
-        var changed = false
-        if checkIn.physical == nil, let c = toChoice(record.physical) {
-            checkIn.physical = c; changed = true
-        }
-        if checkIn.mental == nil, let c = toChoice(record.mental) {
-            checkIn.mental = c; changed = true
-        }
-        if checkIn.emotional == nil, let c = toChoice(record.emotional) {
-            checkIn.emotional = c; changed = true
-        }
+        // Always overwrite with Watch data
+        if let c = toChoice(record.physical) { checkIn.physical = c }
+        if let c = toChoice(record.mental) { checkIn.mental = c }
+        if let c = toChoice(record.emotional) { checkIn.emotional = c }
 
-        guard changed else { return }
-
-        // If there's already a today entry, update it
+        // Update or create today's entry
         if let existing = todayEntry {
             let updated = ReflectionEntry(
                 id: existing.id,
@@ -81,6 +79,10 @@ final class ReflectionService {
             todayEntry = updated
             persistEntries()
         }
+
+        // Mark this record as merged so we don't repeat
+        groupDefaults.set(recordTs, forKey: mergedKey)
+
         print("[iPhone] ✅ Merged Watch check-in: P=\(record.physical) M=\(record.mental) E=\(record.emotional)")
     }
 
