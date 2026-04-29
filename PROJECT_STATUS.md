@@ -76,6 +76,24 @@ Implemented:
 - Prevents redundant HealthKit authorization prompts using App Group `UserDefaults` (`soulEcho_health_permission_requested`).
 - Localized dynamic messages to clearly explain to the user why data might be missing and how to resolve it.
 
+### Watch Quick Check-in
+
+Files:
+
+- `SoulEcho Watch App/Views/QuickCheckInView.swift` (NEW)
+- `SoulEcho Watch App/Managers/WatchStorage.swift`
+- `SoulEcho Watch App/ContentView.swift`
+- `SoulEcho/Core/Storage/ReflectionService.swift`
+
+Implemented:
+
+- Three-emoji mood selector on Watch (😌 Relaxed / 😐 Neutral / 😰 Tense).
+- Haptic feedback via `HapticsManager` and ✅ confirmation animation with 1.5s auto-dismiss.
+- Persistence via App Group `UserDefaults` key `watch_quick_checkin` with dateKey + score + timestamp.
+- Watch home screen shows "Quick Check-in" button; changes to "Checked in ✓" (gray) after today's entry.
+- iPhone `ReflectionService.mergeWatchCheckIn()` reads the App Group record on init and fills `checkIn.emotional` if empty.
+- Score mapping: 1→A (relaxed), 2→B (neutral), 3→C (tense).
+
 ### Home Screen Changes
 
 File:

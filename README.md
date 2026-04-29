@@ -48,6 +48,10 @@ The current product direction is not just "show health data." It helps users com
 - Watch companion target is present.
 - HealthKit and notification-oriented architecture exists for watch-side care prompts.
 - Reflect view and watch haptics managers are part of the app structure.
+- **Quick Check-in**: Tap one of three emoji buttons (😌 Relaxed / 😐 Neutral / 😰 Tense) to record today's feeling directly from the wrist.
+  - Haptic feedback and ✅ confirmation animation on selection.
+  - Button changes to "Checked in ✓" after completion.
+  - Data syncs to iPhone via App Group `UserDefaults` and merges into the `emotional` dimension of `DailyCheckIn`.
 
 ## Key Architecture
 

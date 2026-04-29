@@ -11,6 +11,8 @@ final class ReflectionService {
     private(set) var entries: [ReflectionEntry] = []
 
     private let storageKey = "reflection_entries"
+    private let groupIdentifier = "group.com.ziyang.SoulEcho"
+    private let watchCheckInKey = "watch_quick_checkin"
 
     init() {
         entries = loadEntries()
@@ -18,6 +20,57 @@ final class ReflectionService {
         draftAnswer = todayEntry?.answer ?? ""
         checkIn = todayEntry?.checkIn ?? DailyCheckIn()
         refreshQuestion(hrvValue: nil)
+        mergeWatchCheckIn()
+    }
+
+    /// Reads Watch quick check-in from App Group and merges it into today's reflection
+    func mergeWatchCheckIn() {
+        guard let groupDefaults = UserDefaults(suiteName: groupIdentifier),
+              let data = groupDefaults.data(forKey: watchCheckInKey) else { return }
+
+        struct WatchRecord: Codable {
+            let dateKey: String
+            let score: Int
+            let timestamp: Date
+        }
+
+        guard let record = try? JSONDecoder().decode(WatchRecord.self, from: data),
+              record.dateKey == Self.dateKey(for: Date()) else { return }
+
+        // Map score to CheckInChoice
+        let choice: CheckInChoice
+        switch record.score {
+        case 1: choice = .a
+        case 2: choice = .b
+        case 3: choice = .c
+        default: return
+        }
+
+        // Only merge if emotional is not already set
+        if checkIn.emotional == nil {
+            checkIn.emotional = choice
+            
+            // If there's already a today entry, update it
+            if let existing = todayEntry {
+                let updated = ReflectionEntry(
+                    id: existing.id,
+                    dateKey: existing.dateKey,
+                    question: existing.question,
+                    answer: existing.answer,
+                    checkIn: checkIn,
+                    hrvValue: existing.hrvValue,
+                    quoteContent: existing.quoteContent,
+                    quoteAuthor: existing.quoteAuthor,
+                    createdAt: existing.createdAt,
+                    updatedAt: Date()
+                )
+                entries.removeAll { $0.dateKey == existing.dateKey }
+                entries.insert(updated, at: 0)
+                todayEntry = updated
+                persistEntries()
+            }
+            print("[iPhone] ✅ Merged Watch check-in: score=\(record.score)")
+        }
     }
 
     func refreshQuestion(hrvValue: Double?) {

@@ -176,4 +176,43 @@ class WatchStorage {
         
         return chosenEntry
     }
+    
+    // MARK: - Quick Check-In
+    
+    private let checkInKey = "watch_quick_checkin"
+    
+    struct WatchCheckInRecord: Codable {
+        let dateKey: String
+        let score: Int
+        let timestamp: Date
+    }
+    
+    func saveQuickCheckIn(score: Int) {
+        let record = WatchCheckInRecord(
+            dateKey: Self.todayDateKey(),
+            score: score,
+            timestamp: Date()
+        )
+        guard let data = try? JSONEncoder().encode(record) else { return }
+        userDefaults?.set(data, forKey: checkInKey)
+        print("[Watch] ✅ Quick check-in saved: score=\(score)")
+    }
+    
+    func loadTodayQuickCheckIn() -> Int? {
+        guard let data = userDefaults?.data(forKey: checkInKey),
+              let record = try? JSONDecoder().decode(WatchCheckInRecord.self, from: data),
+              record.dateKey == Self.todayDateKey() else {
+            return nil
+        }
+        return record.score
+    }
+    
+    func hasCheckedInToday() -> Bool {
+        loadTodayQuickCheckIn() != nil
+    }
+    
+    private static func todayDateKey() -> String {
+        let c = Calendar.current.dateComponents([.year, .month, .day], from: Date())
+        return String(format: "%04d-%02d-%02d", c.year ?? 0, c.month ?? 0, c.day ?? 0)
+    }
 }

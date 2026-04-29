@@ -16,6 +16,8 @@ struct ContentView: View {
     @State private var hrvTimestamp: Date?
     @State private var hrvAccessState: WatchHRVAccessState = .notDetermined
     
+    @State private var hasCheckedInToday = false
+    
     var body: some View {
         NavigationStack {
             ScrollView {
@@ -104,6 +106,17 @@ struct ContentView: View {
                     }
                     .tint(.cyan)
                     .padding(.top, 10)
+                    
+                    NavigationLink(destination: QuickCheckInView()) {
+                        HStack {
+                            Image(systemName: hasCheckedInToday ? "checkmark.circle.fill" : "face.smiling.inverse")
+                            Text(hasCheckedInToday
+                                 ? (isChinese ? "已打卡 ✓" : "Checked in ✓")
+                                 : (isChinese ? "快速打卡" : "Quick Check-in"))
+                        }
+                    }
+                    .tint(hasCheckedInToday ? .gray : .orange)
+                    .padding(.top, 2)
                 }
             }
         }
@@ -118,6 +131,12 @@ struct ContentView: View {
             hrvValue = snapshot.value
             hrvTimestamp = snapshot.timestamp
             hrvAccessState = snapshot.accessState
+            
+            // Check if already checked in today
+            hasCheckedInToday = WatchStorage.shared.hasCheckedInToday()
+        }
+        .onAppear {
+            hasCheckedInToday = WatchStorage.shared.hasCheckedInToday()
         }
     }
     
@@ -166,6 +185,10 @@ struct ContentView: View {
         case .permissionPossiblyOff:
             return String(localized: "Review Health settings.")
         }
+    }
+
+    private var isChinese: Bool {
+        Locale.current.language.languageCode?.identifier == "zh"
     }
 }
 
